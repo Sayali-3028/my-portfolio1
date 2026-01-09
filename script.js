@@ -1,0 +1,18 @@
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = {
+    name: name.value,
+    email: email.value,
+    message: message.value
+  };
+
+  const res = await fetch("http://localhost:5000/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+  document.getElementById("status").innerText = result.message;
+});
